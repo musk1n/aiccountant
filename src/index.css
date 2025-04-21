@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.progress-bar {
+  height: 6px;
+  transition: width 0.3s ease;
+}
+.confidence-high {
+  background-color: #10B981;
+}
+.confidence-medium {
+  background-color: #F59E0B;
+}
+.confidence-low {
+  background-color: #EF4444;
+}
+.file-drop-area {
+  border: 2px dashed #CBD5E0;
+  transition: all 0.3s;
+}
+.file-drop-area.active {
+  border-color: #3B82F6;
+  background-color: #EFF6FF;
+}
+.transaction-card {
+  transition: all 0.2s;
+}
+.transaction-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.summary-card {
+  background: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%);
+}
+.discrepancy-tag {
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+.feedback-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+.feedback-panel.open {
+  max-height: 500px;
+}
+.data-table {
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+.data-table th {
+  text-align: left;
+  background-color: #f3f4f6;
+}
