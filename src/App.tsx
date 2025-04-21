@@ -6,6 +6,7 @@ import DataPreview from './components/DataPreview';
 import ProcessButton from './components/ProcessButton';
 import SummaryPreview from './components/SummaryPreview';
 import ResultsSection from './components/Results/ResultsSection';
+import Chatbot from './components/Chatbot/Chatbot';
 import { 
   FinancialEntry, 
   MatchingParameters, 
@@ -233,6 +234,12 @@ function App() {
           )}
         </div>
       </div>
+        
+        {/* Chatbot Component */}
+        <Chatbot 
+          messages={[]} // Pass messages state if needed
+          onSendMessage={() => {}} // Implement send message function if needed
+        />
     </div>
   );
 }
