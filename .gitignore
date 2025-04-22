@@ -73,5 +73,5 @@ ScaffoldingReadMe.txt
 *.suo
 *.sln.docstates
 node_modules
-.env
+/.env
 *.log
