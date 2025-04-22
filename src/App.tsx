@@ -238,11 +238,11 @@ function App() {
         </div>
       </div>
         
-        {/* Chatbot Component */}
+        {/* Chatbot Component
         <Chatbot 
           messages={[]} // Pass messages state if needed
           onSendMessage={() => {}} // Implement send message function if needed
-        />
+        /> */}
     </div>
   );
 }
