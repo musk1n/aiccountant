@@ -1,25 +1,19 @@
-import json
-import os
+from fastapi import APIRouter, Request
+from pydantic import BaseModel
 from datetime import datetime
 
-FEEDBACK_FILE = "backend/feedback_store.json"
+router = APIRouter()
 
-def save_feedback(feedback: dict):
-    # Add timestamp
-    feedback_entry = {
-        "timestamp": datetime.now().isoformat(),
-        "feedback": feedback
-    }
+FEEDBACK_STORE = []
 
-    # If file doesn't exist, create and add empty list
-    if not os.path.exists(FEEDBACK_FILE):
-        with open(FEEDBACK_FILE, "w") as f:
-            json.dump([], f)
+class Feedback(BaseModel):
+    index: int
+    type: str
+    notes: str
+    timestamp: datetime = datetime.now()
 
-    # Load, append, and save
-    with open(FEEDBACK_FILE, "r+") as f:
-        data = json.load(f)
-        data.append(feedback_entry)
-        f.seek(0)
-        json.dump(data, f, indent=2)
+@router.post("/feedback")
+async def receive_feedback(feedback: Feedback):
+    FEEDBACK_STORE.append(feedback.dict())
+    print("Feedback received:", feedback)
     return {"status": "success", "message": "Feedback saved"}

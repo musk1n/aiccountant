@@ -7,6 +7,7 @@ import ProcessButton from './components/ProcessButton';
 import SummaryPreview from './components/SummaryPreview';
 import ResultsSection from './components/Results/ResultsSection';
 import Chatbot from './components/Chatbot/Chatbot';
+import axios from 'axios';
 import { 
   FinancialEntry, 
   MatchingParameters, 
@@ -178,6 +179,8 @@ function App() {
     // For demo, just show an alert
     alert(`Feedback submitted!\n\nType: ${type}\nNotes: ${notes}`);
   };
+
+  
   
   return (
     <div className="bg-gray-50 font-sans">
