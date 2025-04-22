@@ -27,6 +27,24 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({
     dateTolerance: 2,
   });
 
+  const sendFeedback = async (index: number, type: string, notes: string) => {
+    try {
+      const response = await fetch('http://localhost:8000/feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ index, type, notes }),
+      });
+
+      if (!response.ok) throw new Error('Failed to submit feedback');
+      onFeedbackSubmit(index, type, notes);
+    } catch (err) {
+      console.error(err);
+      alert('Feedback failed');
+    }
+  };
+
   if (!isVisible) return null;
 
   const handleExport = () => {
@@ -80,75 +98,11 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({
         </div>
       </div>
 
-      <SummaryStats
-        analysisResults={analysisResults}
-        matchingResults={matchingResults}
-      />
+      <SummaryStats analysisResults={analysisResults} matchingResults={matchingResults} />
 
-      <TransactionTable
-        matchingResults={matchingResults}
-        onFeedbackSubmit={onFeedbackSubmit}
-      />
+      <TransactionTable matchingResults={matchingResults} onFeedbackSubmit={sendFeedback} />
 
-      <FinancialSummary
-        analysisResults={analysisResults}
-      />
-
-      {showAdjustModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-            <h3 className="text-lg font-semibold mb-4">Adjust Matching Parameters</h3>
-            <div className="space-y-4">
-              <div>
-                <label className="block font-medium">Threshold (0 - 1)</label>
-                <input
-                  type="number"
-                  step="0.01"
-                  min="0"
-                  max="1"
-                  value={matchingParams.threshold}
-                  onChange={(e) =>
-                    setMatchingParams({
-                      ...matchingParams,
-                      threshold: parseFloat(e.target.value),
-                    })
-                  }
-                  className="w-full border px-3 py-2 rounded"
-                />
-              </div>
-              <div>
-                <label className="block font-medium">Date Tolerance (in days)</label>
-                <input
-                  type="number"
-                  min="0"
-                  value={matchingParams.dateTolerance}
-                  onChange={(e) =>
-                    setMatchingParams({
-                      ...matchingParams,
-                      dateTolerance: parseInt(e.target.value),
-                    })
-                  }
-                  className="w-full border px-3 py-2 rounded"
-                />
-              </div>
-              <div className="flex justify-end gap-2 mt-4">
-                <button
-                  onClick={() => setShowAdjustModal(false)}
-                  className="bg-gray-200 px-4 py-2 rounded"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={handleApplyAdjustments}
-                  className="bg-blue-600 text-white px-4 py-2 rounded"
-                >
-                  Apply
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <FinancialSummary analysisResults={analysisResults} />
     </div>
   );
 };
