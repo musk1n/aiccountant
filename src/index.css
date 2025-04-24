@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .progress-bar {
   height: 6px;
   transition: width 0.3s ease;

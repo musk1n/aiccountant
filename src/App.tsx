@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
+// import LoginPage from './components/LoginPage';
 import FileUpload from './components/FileUpload/FileUpload';
 import MatchingParametersSection from './components/MatchingParameters';
 import DataPreview from './components/DataPreview';
@@ -35,6 +36,8 @@ function App() {
     amountTolerance: 1,
     algorithm: 'levenshtein'
   });
+  
+
   
   // State for results
   const [matchingResults, setMatchingResults] = useState<MatchingResult[]>([]);
@@ -183,7 +186,7 @@ function App() {
   
   
   return (
-    <div className="bg-gray-50 font-sans">
+    <div className="bg-gradient-to-b from-[#cddffc] to-white font-sans">
       <div className="container mx-auto px-4 py-8">
         <Header />
         
