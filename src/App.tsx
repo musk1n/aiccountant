@@ -32,9 +32,9 @@ function App() {
   
   // State for matching parameters
   const [matchingParameters, setMatchingParameters] = useState<MatchingParameters>({
-    dateTolerance: 3,
+    dateTolerance: 1,
     amountTolerance: 1,
-    algorithm: 'levenshtein'
+    algorithm: 'fuzzy'
   });
   
 
