@@ -210,7 +210,7 @@ function App() {
         </div>
       </div>
 
-      {/* Floating Chatbot Toggle Button */}
+      {/* Floating Chatbot Toggle Button 
       <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setIsChatbotOpen(!isChatbotOpen)}
@@ -227,7 +227,7 @@ function App() {
             />
           </div>
         )}
-      </div>
+      </div>*/}
     </div>
   );
 }
