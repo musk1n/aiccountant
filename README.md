@@ -5,6 +5,8 @@
 - 👉 **CHECK LIVE VERSION:** https://aiccountant-eta.vercel.app/
 - 👉 **DOCUMENTATION:** https://drive.google.com/file/d/1BSmTgE797eXp3SX17gJgsex2R0_ubMlE/view?usp=sharing
 
+-----------------
+
 ## 🏗️ About AICOUNTANT  
 
 AICOUNTANT is an AI agent that simplifies financial reconciliation for CPA firms and finance teams. It leverages AI to match transactions, handle discrepancies, and generate plain-language summaries for executive review.  
