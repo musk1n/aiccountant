@@ -35,8 +35,10 @@ const Header: React.FC = () => {
       <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
     </svg>
     <p className="text-sm text-blue-600 mt-1">Scroll Down</p>
-  </div>
+  </div>  
 </div>
+
+
 
   );
 };

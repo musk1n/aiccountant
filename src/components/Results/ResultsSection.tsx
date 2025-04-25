@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AnalysisResult, MatchingResult } from '../../types';
 import { ClipboardList, File as FileExport, Sliders, RefreshCw } from 'lucide-react';
 import SummaryStats from './SummaryStats';
 import TransactionTable from './TransactionTable';
 import FinancialSummary from './FinancialSummary';
 import { convertToCSV, exportCSV } from '../../utils/csvParser';
+import { useFeedback } from '../feedback/FeedbackContext';
 
 interface ResultsSectionProps {
   matchingResults: MatchingResult[];
@@ -27,6 +28,26 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({
     dateTolerance: 2,
   });
 
+  const { feedbacks } = useFeedback();
+  const [feedbackSummary, setFeedbackSummary] = useState("");
+
+  useEffect(() => {
+    if (feedbacks.length > 0) {
+      const keywords = feedbacks.map(fb => fb.toLowerCase()).join(" ");
+      let summary = `Received ${feedbacks.length} feedback items.`;
+
+      if (keywords.includes("accuracy")) {
+        summary += " Users are concerned about accuracy.";
+      }
+      if (keywords.includes("delay") || keywords.includes("date")) {
+        summary += " There might be issues with date matching.";
+      }
+      setFeedbackSummary(summary);
+    } else {
+      setFeedbackSummary("");
+    }
+  }, [feedbacks]);
+
   if (!isVisible) return null;
 
   const handleExport = () => {
@@ -39,10 +60,7 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({
     exportCSV(csvContent, `reconciliation_report_${new Date().toISOString().slice(0, 10)}.csv`);
   };
 
-  const handleAdjust = () => {
-    setShowAdjustModal(true);
-  };
-
+  const handleAdjust = () => setShowAdjustModal(true);
   const handleApplyAdjustments = () => {
     setShowAdjustModal(false);
     onReprocess(matchingParams);
@@ -90,9 +108,13 @@ const ResultsSection: React.FC<ResultsSectionProps> = ({
         onFeedbackSubmit={onFeedbackSubmit}
       />
 
-      <FinancialSummary
-        analysisResults={analysisResults}
-      />
+      {feedbackSummary && (
+        <div className="mt-6 bg-yellow-50 border border-yellow-300 rounded p-4 text-yellow-800">
+          <strong>User Feedback Summary:</strong> {feedbackSummary}
+        </div>
+      )}
+
+      <FinancialSummary analysisResults={analysisResults} />
 
       {showAdjustModal && (
         <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">

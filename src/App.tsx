@@ -7,6 +7,8 @@ import DataPreview from './components/DataPreview';
 import ProcessButton from './components/ProcessButton';
 import SummaryPreview from './components/SummaryPreview';
 import ResultsSection from './components/Results/ResultsSection';
+import { FeedbackProvider } from './components/feedback/FeedbackContext';
+import FeedbackForm from './components/feedback/FeedbackForm';
 import Chatbot from './components/Chatbot/Chatbot';
 import axios from 'axios';
 import { 
@@ -109,6 +111,12 @@ function App() {
     // Simulate processing steps
     simulateProcessing();
   };
+
+
+  const mockResults = [
+    { id: "1", label: "Match Accuracy", value: "92%" },
+    { id: "2", label: "Unmatched Transactions", value: "8 items" },
+  ];
   
   // Simulate the processing steps with realistic progress
   const simulateProcessing = () => {
