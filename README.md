@@ -5,6 +5,7 @@
 ---
 - 👉 **CHECK LIVE VERSION:** https://aiccountant-eta.vercel.app/
 - 👉 **DOCUMENTATION:** https://github.com/musk1n/aiccountant/blob/main/aiccountant.pdf
+- 👉 **PROBLEM STATEMENT - TRACK 3:** https://drive.google.com/file/d/1N--C5_wygrwymsbsqympnqvzKnKns1O4/view
 
 -----------------
 
