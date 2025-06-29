@@ -4,7 +4,7 @@
    
 ---
 - 👉 **CHECK LIVE VERSION:** https://aiccountant-eta.vercel.app/
-- 👉 **DOCUMENTATION:** https://drive.google.com/file/d/1BSmTgE797eXp3SX17gJgsex2R0_ubMlE/view?usp=sharing
+- 👉 **DOCUMENTATION:** https://github.com/musk1n/aiccountant/blob/main/aiccountant.pdf
 
 -----------------
 
